@@ -119,12 +119,12 @@ fn main() {
                 j -= 1;
             }
 
-            i += 1;
-
             generate_positions(
                 &array,
                 &mut positions,
             );
+
+            i += 1;
         }
 
         window.draw_2d(
