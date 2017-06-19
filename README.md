@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/jean553/sorting-algorithms.svg?branch=master)](https://travis-ci.org/jean553/sorting-algorithms)
 
+![Image 1](sorting-algorithms/res/screenshot.png)
+
 Sorting algorithms implementations.
 
 ## Installation and usage
@@ -19,6 +21,6 @@ This project contains the implementations of:
 
 ### Insertion sort
 
-![Image 1](sorting-algorithms/res/insertion_sort.png)
+![Image 2](sorting-algorithms/res/insertion_sort.png)
 
 More details: https://en.wikipedia.org/wiki/Insertion_sort
