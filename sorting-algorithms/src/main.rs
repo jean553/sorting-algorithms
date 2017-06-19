@@ -21,8 +21,6 @@ use graphics::{
     rectangle,
 };
 
-mod insertion_sort;
-
 #[derive(Copy, Clone)]
 struct SquarePositions {
     horizontal_position: f64,
