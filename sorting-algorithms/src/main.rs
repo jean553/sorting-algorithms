@@ -20,19 +20,24 @@ use graphics::{
     rectangle,
 };
 
-fn display_squares(
-    squares: &mut [Rectangle; 50],
-    context: &Context,
-    window: &mut G2d,
+#[derive(Copy, Clone)]
+struct SquarePositions {
+    horizontal_position: f64,
+    vertical_position: f64,
+}
+
+fn generate_positions(
+    array: &[u8; 50],
+    positions: &mut [SquarePositions; 50],
 ) {
 
-    for square in squares.iter() {
-        square.draw(
-            [10.0, 10.0, 20.0, 20.0],
-            &context.draw_state,
-            context.transform,
-            window
-        );
+    for index in 0..50 {
+
+        positions[index].horizontal_position =
+            (index as f64) * 10.0;
+
+        positions[index].vertical_position =
+            490.0 - ((array[index] as f64) * 10.0);
     }
 }
 
@@ -48,15 +53,21 @@ fn main() {
 
     let mut squares = [
         Rectangle {
-            color: [1.0, 0.0, 1.0, 1.0],
+            color: [0.0, 0.0, 0.0, 1.0],
             shape: rectangle::Shape::Square,
             border: None,
+        }; 50];
+
+    let mut positions = [
+        SquarePositions {
+            horizontal_position: 0.0,
+            vertical_position: 0.0,
         }; 50];
 
     let mut array: [u8; 50] = [0; 50];
 
     for value in array.iter_mut() {
-        *value = rand::thread_rng().gen_range(1, 101);
+        *value = rand::thread_rng().gen_range(1, 41);
     }
 
     while let Some(event) = window.next() {
@@ -70,11 +81,28 @@ fn main() {
                     window
                 );
 
-                display_squares(
-                    &mut squares,
-                    &context,
-                    window,
+                generate_positions(
+                    &array,
+                    &mut positions,
                 );
+
+                for (index, square) in squares.iter().enumerate() {
+
+                    let horizontal_position = positions[index].horizontal_position;
+                    let vertical_position = positions[index].vertical_position;
+
+                    square.draw(
+                        [
+                            horizontal_position,
+                            vertical_position,
+                            10.0,
+                            10.0
+                        ],
+                        &context.draw_state,
+                        context.transform,
+                        window
+                    );
+                }
             }
         );
     }
