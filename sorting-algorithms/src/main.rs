@@ -24,9 +24,9 @@ fn main() {
     .build()
     .unwrap();
 
-    let test = [
+    let squares = [
         Rectangle {
-            color: [1.0, 1.0, 1.0, 1.0],
+            color: [1.0, 0.0, 1.0, 1.0],
             shape: rectangle::Shape::Square,
             border: None,
         }; 50];
@@ -41,6 +41,16 @@ fn main() {
                     [1.0, 1.0, 1.0, 1.0],
                     window
                 );
+
+                for square in squares.iter() {
+
+                    square.draw(
+                        [10.0, 10.0, 20.0, 20.0],
+                        &context.draw_state,
+                        context.transform,
+                        window
+                    );
+                }
             }
         );
     }
