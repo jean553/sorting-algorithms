@@ -1,0 +1,9 @@
+language: rust
+rust:
+    - nightly
+
+before_script:
+    - cd sorting-algorithms/ 
+
+script:
+    - cargo test sorting-algorithms
