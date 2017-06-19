@@ -6,13 +6,18 @@ extern crate graphics;
 use rand::Rng;
 
 use piston_window::{
+    G2d,
     PistonWindow,
     WindowSettings,
     clear,
     Rectangle,
+    Button,
+    Key,
+    ReleaseEvent,
 };
 
 use graphics::{
+    Context,
     rectangle,
 };
 
@@ -20,6 +25,28 @@ use graphics::{
 struct SquarePositions {
     horizontal_position: f64,
     vertical_position: f64,
+}
+
+fn display_squares(
+    squares: &[Rectangle; 50],
+    positions: &[SquarePositions; 50],
+    context: &Context,
+    window: &mut G2d,
+) {
+
+    for (index, square) in squares.iter().enumerate() {
+        square.draw(
+            [
+                positions[index].horizontal_position,
+                positions[index].vertical_position,
+                10.0,
+                10.0
+            ],
+            &context.draw_state,
+            context.transform,
+            window
+        );
+    }
 }
 
 fn generate_positions(
@@ -40,7 +67,7 @@ fn generate_positions(
 fn main() {
 
     let mut window: PistonWindow = WindowSettings::new(
-        "Rust Tic-Tac-Toe",
+        "Sorting algorithms",
         [500, 500]
     )
     .exit_on_esc(true)
@@ -66,7 +93,39 @@ fn main() {
         *value = rand::thread_rng().gen_range(1, 41);
     }
 
+    let mut i = 1;
+    let mut j;
+
+    generate_positions(
+        &array,
+        &mut positions,
+    );
+
     while let Some(event) = window.next() {
+
+        if let Some(Button::Keyboard(Key::Space)) = event.release_args() {
+
+            /* TODO #10 should be refactored: the program must be able
+               to handle different algorithms */
+
+            if i == 50 {
+                continue;
+            }
+
+            j = i;
+
+            while j > 0 && array[j - 1] > array[j] {
+                array.swap(j, j - 1);
+                j -= 1;
+            }
+
+            i += 1;
+
+            generate_positions(
+                &array,
+                &mut positions,
+            );
+        }
 
         window.draw_2d(
             &event,
@@ -77,25 +136,12 @@ fn main() {
                     window
                 );
 
-                generate_positions(
-                    &array,
-                    &mut positions,
+                display_squares(
+                    &squares,
+                    &positions,
+                    &context,
+                    window,
                 );
-
-                for (index, square) in squares.iter().enumerate() {
-
-                    square.draw(
-                        [
-                            positions[index].horizontal_position,
-                            positions[index].vertical_position,
-                            10.0,
-                            10.0
-                        ],
-                        &context.draw_state,
-                        context.transform,
-                        window
-                    );
-                }
             }
         );
     }
