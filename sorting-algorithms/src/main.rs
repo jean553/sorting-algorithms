@@ -3,12 +3,9 @@ extern crate rand;
 extern crate piston_window;
 extern crate graphics;
 
-use std::mem;
-
 use rand::Rng;
 
 use piston_window::{
-    G2d,
     PistonWindow,
     WindowSettings,
     clear,
@@ -16,7 +13,6 @@ use piston_window::{
 };
 
 use graphics::{
-    Context,
     rectangle,
 };
 
