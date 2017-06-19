@@ -3,12 +3,9 @@ extern crate rand;
 extern crate piston_window;
 extern crate graphics;
 
-use std::mem;
-
 use rand::Rng;
 
 use piston_window::{
-    G2d,
     PistonWindow,
     WindowSettings,
     clear,
@@ -16,7 +13,6 @@ use piston_window::{
 };
 
 use graphics::{
-    Context,
     rectangle,
 };
 
@@ -51,7 +47,7 @@ fn main() {
     .build()
     .unwrap();
 
-    let mut squares = [
+    let squares = [
         Rectangle {
             color: [0.0, 0.0, 0.0, 1.0],
             shape: rectangle::Shape::Square,
@@ -88,13 +84,10 @@ fn main() {
 
                 for (index, square) in squares.iter().enumerate() {
 
-                    let horizontal_position = positions[index].horizontal_position;
-                    let vertical_position = positions[index].vertical_position;
-
                     square.draw(
                         [
-                            horizontal_position,
-                            vertical_position,
+                            positions[index].horizontal_position,
+                            positions[index].vertical_position,
                             10.0,
                             10.0
                         ],
