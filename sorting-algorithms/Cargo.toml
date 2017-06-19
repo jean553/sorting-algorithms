@@ -4,5 +4,6 @@ version = "0.1.0"
 authors = ["Jean LELIEVRE <Jean.LELIEVRE@supinfo.com>"]
 
 [dependencies]
+rand = "0.3.0"
 piston_window = "0.66.0"
 piston2d-graphics = "0.21.1"

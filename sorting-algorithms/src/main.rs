@@ -1,7 +1,11 @@
+extern crate rand;
+
 extern crate piston_window;
 extern crate graphics;
 
 use std::mem;
+
+use rand::Rng;
 
 use piston_window::{
     PistonWindow,
@@ -30,6 +34,12 @@ fn main() {
             shape: rectangle::Shape::Square,
             border: None,
         }; 50];
+
+    let mut array: [u8; 50] = [0; 50];
+
+    for value in array.iter_mut() {
+        *value = rand::thread_rng().gen_range(1, 101);
+    }
 
     while let Some(event) = window.next() {
 
