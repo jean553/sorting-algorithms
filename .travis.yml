@@ -6,4 +6,4 @@ before_script:
     - cd sorting-algorithms/ 
 
 script:
-    - cargo test sorting-algorithms
+    - cargo build sorting-algorithms
