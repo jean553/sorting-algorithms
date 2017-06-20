@@ -88,7 +88,7 @@ fn main() {
 
     let squares = [
         Rectangle {
-            color: [0.0, 0.0, 0.0, 1.0],
+            color: [0.0, 0.0, 0.0, 1.0], /* black */
             shape: rectangle::Shape::Square,
             border: None,
         }; ARRAY_LENGTH];
@@ -105,13 +105,14 @@ fn main() {
         *value = rand::thread_rng().gen_range(1, 41);
     }
 
-    let mut i: usize = 1;
-    let mut j: usize = 0;
-
     generate_positions(
         &array,
         &mut positions,
     );
+
+    /* used by every algorithms */
+    let mut i: usize = 1;
+    let mut j: usize = 0;
 
     while let Some(event) = window.next() {
 
@@ -142,8 +143,8 @@ fn main() {
             |context, window| {
 
                 clear(
-                    [1.0, 1.0, 1.0, 1.0],
-                    window
+                    [1.0, 1.0, 1.0, 1.0], /* white */
+                    window,
                 );
 
                 display_squares(
