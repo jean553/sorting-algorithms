@@ -9,8 +9,12 @@ Sorting algorithms implementations.
 ## Installation and usage
 
 ```
-cargo run
+cargo run [algorithm]
 ```
+
+`algorithm` can be equal to:
+ * `insertion`: insertion sort
+ * `selection`: selection sort
 
 Use 'Space' key to iterate and sort step by step.
 
