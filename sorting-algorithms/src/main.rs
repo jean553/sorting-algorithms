@@ -6,6 +6,7 @@ extern crate piston_window;
 extern crate graphics;
 
 use rand::Rng;
+use std::env;
 
 use piston_window::{
     G2d,
@@ -30,6 +31,11 @@ mod selection_sort;
 struct SquarePositions {
     horizontal_position: f64,
     vertical_position: f64,
+}
+
+enum Algorithm {
+    Insertion,
+    Selection,
 }
 
 const SQUARE_DIMENSIONS: f64 = 10.0;
@@ -80,6 +86,13 @@ fn generate_positions(
 }
 
 fn main() {
+
+    let args: Vec<_> = env::args().collect();
+    let algorithm = if args.get(1).unwrap() == "insertion" {
+        Algorithm::Insertion
+    } else {
+        Algorithm::Selection
+    };
 
     const WINDOW_WIDTH: u32 = 500;
     const WINDOW_HEIGHT: u32 = 500;
@@ -138,10 +151,21 @@ fn main() {
                 continue;
             }
 
-            selection_sort::iterate_over_selection_sort(
-                &mut array,
-                &mut second_index,
-            );
+            match algorithm {
+                Algorithm::Insertion => {
+                    insertion_sort::iterate_over_insertion_sort(
+                        &mut array,
+                        &mut first_index,
+                        &mut second_index,
+                    );
+                }
+                _ => {
+                    selection_sort::iterate_over_selection_sort(
+                        &mut array,
+                        &mut second_index,
+                    );
+                }
+            };
 
             generate_positions(
                 &array,
