@@ -14,6 +14,12 @@ cargo run
 
 Use 'Space' key to iterate and sort step by step.
 
+## Generate documentation
+
+```
+cargo rustdoc -- --no-defaults
+```
+
 ## Sorting algorithms
 
 This project contains the implementations of:

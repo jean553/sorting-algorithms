@@ -1,3 +1,5 @@
+//! Main file
+
 extern crate rand;
 
 extern crate piston_window;
@@ -29,9 +31,15 @@ struct SquarePositions {
     vertical_position: f64,
 }
 
+const SQUARE_DIMENSIONS: f64 = 10.0;
+const ARRAY_LENGTH: usize = 50;
+
+/// Displays every square contained by the `squares` array;
+/// the positions of the squares are wrapped into `positions` array;
+/// the method uses the given Piston context and window
 fn display_squares(
-    squares: &[Rectangle; 50],
-    positions: &[SquarePositions; 50],
+    squares: &[Rectangle; ARRAY_LENGTH],
+    positions: &[SquarePositions; ARRAY_LENGTH],
     context: &Context,
     window: &mut G2d,
 ) {
@@ -41,36 +49,45 @@ fn display_squares(
             [
                 positions[index].horizontal_position,
                 positions[index].vertical_position,
-                10.0,
-                10.0
+                SQUARE_DIMENSIONS,
+                SQUARE_DIMENSIONS,
             ],
             &context.draw_state,
             context.transform,
-            window
+            window,
         );
     }
 }
 
+/// Sets the position of each square contained into `squares`;
+/// updates the given `positions` array
 fn generate_positions(
-    array: &[u8; 50],
-    positions: &mut [SquarePositions; 50],
+    array: &[u8; ARRAY_LENGTH],
+    positions: &mut [SquarePositions; ARRAY_LENGTH],
 ) {
 
-    for index in 0..50 {
+    for index in 0..ARRAY_LENGTH {
 
         positions[index].horizontal_position =
-            (index as f64) * 10.0;
+            (index as f64) * SQUARE_DIMENSIONS;
 
+        let value = array[index];
+        const LOW_VERTICAL_POSITION: f64 = 490.0;
         positions[index].vertical_position =
-            490.0 - ((array[index] as f64) * 10.0);
+            LOW_VERTICAL_POSITION - ((value as f64) * SQUARE_DIMENSIONS);
     }
 }
 
 fn main() {
 
+    const WINDOW_WIDTH: u32 = 500;
+    const WINDOW_HEIGHT: u32 = 500;
     let mut window: PistonWindow = WindowSettings::new(
         "Sorting algorithms",
-        [500, 500]
+        [
+            WINDOW_WIDTH,
+            WINDOW_HEIGHT,
+        ]
     )
     .exit_on_esc(true)
     .build()
@@ -78,30 +95,36 @@ fn main() {
 
     let squares = [
         Rectangle {
-            color: [0.0, 0.0, 0.0, 1.0],
+            color: [0.0, 0.0, 0.0, 1.0], /* black */
             shape: rectangle::Shape::Square,
             border: None,
-        }; 50];
+        }; ARRAY_LENGTH];
 
     let mut positions = [
         SquarePositions {
             horizontal_position: 0.0,
             vertical_position: 0.0,
-        }; 50];
+        }; ARRAY_LENGTH];
 
-    let mut array: [u8; 50] = [0; 50];
+    let mut array: [u8; ARRAY_LENGTH] = [0; ARRAY_LENGTH];
 
+    const MIN_RANDOM_VALUE: u8 = 1;
+    const MAX_RANDOM_VALUE: u8 = 41;
     for value in array.iter_mut() {
-        *value = rand::thread_rng().gen_range(1, 41);
+        *value = rand::thread_rng().gen_range(
+            MIN_RANDOM_VALUE,
+            MAX_RANDOM_VALUE,
+        );
     }
-
-    let mut i: usize = 1;
-    let mut j: usize = 0;
 
     generate_positions(
         &array,
         &mut positions,
     );
+
+    /* used by every algorithms */
+    let mut i: usize = 1;
+    let mut j: usize = 0;
 
     while let Some(event) = window.next() {
 
@@ -110,7 +133,7 @@ fn main() {
             /* TODO #10 should be refactored: the program must be able
                to handle different algorithms */
 
-            if i == 50 {
+            if i == ARRAY_LENGTH {
                 continue;
             }
 
@@ -132,8 +155,8 @@ fn main() {
             |context, window| {
 
                 clear(
-                    [1.0, 1.0, 1.0, 1.0],
-                    window
+                    [1.0, 1.0, 1.0, 1.0], /* white */
+                    window,
                 );
 
                 display_squares(
