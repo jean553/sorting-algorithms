@@ -73,9 +73,14 @@ fn generate_positions(
 
 fn main() {
 
+    const WINDOW_WIDTH: u32 = 500;
+    const WINDOW_HEIGHT: u32 = 500;
     let mut window: PistonWindow = WindowSettings::new(
         "Sorting algorithms",
-        [500, 500]
+        [
+            WINDOW_WIDTH,
+            WINDOW_HEIGHT,
+        ]
     )
     .exit_on_esc(true)
     .build()
