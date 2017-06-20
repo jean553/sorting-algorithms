@@ -64,8 +64,10 @@ fn generate_positions(
         positions[index].horizontal_position =
             (index as f64) * SQUARE_DIMENSIONS;
 
+        let value = array[index];
+        const LOW_VERTICAL_POSITION: f64 = 490.0;
         positions[index].vertical_position =
-            490.0 - ((array[index] as f64) * SQUARE_DIMENSIONS);
+            LOW_VERTICAL_POSITION - ((value as f64) * SQUARE_DIMENSIONS);
     }
 }
 
