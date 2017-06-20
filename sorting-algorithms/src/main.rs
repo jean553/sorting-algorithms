@@ -21,6 +21,8 @@ use graphics::{
     rectangle,
 };
 
+mod insertion_sort;
+
 #[derive(Copy, Clone)]
 struct SquarePositions {
     horizontal_position: f64,
@@ -93,8 +95,8 @@ fn main() {
         *value = rand::thread_rng().gen_range(1, 41);
     }
 
-    let mut i = 1;
-    let mut j;
+    let mut i: usize = 1;
+    let mut j: usize = 0;
 
     generate_positions(
         &array,
@@ -112,19 +114,17 @@ fn main() {
                 continue;
             }
 
-            j = i;
-
-            while j > 0 && array[j - 1] > array[j] {
-                array.swap(j, j - 1);
-                j -= 1;
-            }
+            insertion_sort::iterate_over_insertion_sort(
+                &mut array,
+                &mut i,
+                &mut j,
+            );
 
             generate_positions(
                 &array,
                 &mut positions,
             );
 
-            i += 1;
         }
 
         window.draw_2d(
