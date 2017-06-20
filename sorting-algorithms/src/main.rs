@@ -29,6 +29,8 @@ struct SquarePositions {
     vertical_position: f64,
 }
 
+const SQUARE_DIMENSIONS: f64 = 10.0;
+
 fn display_squares(
     squares: &[Rectangle; 50],
     positions: &[SquarePositions; 50],
@@ -41,12 +43,12 @@ fn display_squares(
             [
                 positions[index].horizontal_position,
                 positions[index].vertical_position,
-                10.0,
-                10.0
+                SQUARE_DIMENSIONS,
+                SQUARE_DIMENSIONS,
             ],
             &context.draw_state,
             context.transform,
-            window
+            window,
         );
     }
 }
@@ -59,10 +61,10 @@ fn generate_positions(
     for index in 0..50 {
 
         positions[index].horizontal_position =
-            (index as f64) * 10.0;
+            (index as f64) * SQUARE_DIMENSIONS;
 
         positions[index].vertical_position =
-            490.0 - ((array[index] as f64) * 10.0);
+            490.0 - ((array[index] as f64) * SQUARE_DIMENSIONS);
     }
 }
 
