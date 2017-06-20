@@ -101,8 +101,13 @@ fn main() {
 
     let mut array: [u8; ARRAY_LENGTH] = [0; ARRAY_LENGTH];
 
+    const MIN_RANDOM_VALUE: u8 = 1;
+    const MAX_RANDOM_VALUE: u8 = 41;
     for value in array.iter_mut() {
-        *value = rand::thread_rng().gen_range(1, 41);
+        *value = rand::thread_rng().gen_range(
+            MIN_RANDOM_VALUE,
+            MAX_RANDOM_VALUE,
+        );
     }
 
     generate_positions(
