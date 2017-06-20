@@ -32,6 +32,9 @@ struct SquarePositions {
 const SQUARE_DIMENSIONS: f64 = 10.0;
 const ARRAY_LENGTH: usize = 50;
 
+/// Displays every square contained by the `squares` array;
+/// the positions of the squares are wrapped into `positions` array;
+/// the method uses the given Piston context and window
 fn display_squares(
     squares: &[Rectangle; ARRAY_LENGTH],
     positions: &[SquarePositions; ARRAY_LENGTH],
@@ -54,6 +57,8 @@ fn display_squares(
     }
 }
 
+/// Sets the position of each square contained into `squares`;
+/// updates the given `positions` array
 fn generate_positions(
     array: &[u8; ARRAY_LENGTH],
     positions: &mut [SquarePositions; ARRAY_LENGTH],

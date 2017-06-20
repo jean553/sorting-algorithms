@@ -1,3 +1,4 @@
+/// Triggers one step of the insertion sort
 pub fn iterate_over_insertion_sort(
     array: &mut [u8; 50], 
     a: &mut usize,
