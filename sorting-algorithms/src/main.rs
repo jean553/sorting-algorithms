@@ -6,6 +6,7 @@ extern crate piston_window;
 extern crate graphics;
 
 use rand::Rng;
+use std::env;
 
 use piston_window::{
     G2d,
@@ -24,11 +25,17 @@ use graphics::{
 };
 
 mod insertion_sort;
+mod selection_sort;
 
 #[derive(Copy, Clone)]
 struct SquarePositions {
     horizontal_position: f64,
     vertical_position: f64,
+}
+
+enum Algorithm {
+    Insertion,
+    Selection,
 }
 
 const SQUARE_DIMENSIONS: f64 = 10.0;
@@ -80,6 +87,13 @@ fn generate_positions(
 
 fn main() {
 
+    let args: Vec<_> = env::args().collect();
+    let algorithm = if args.get(1).unwrap() == "insertion" {
+        Algorithm::Insertion
+    } else {
+        Algorithm::Selection
+    };
+
     const WINDOW_WIDTH: u32 = 500;
     const WINDOW_HEIGHT: u32 = 500;
     let mut window: PistonWindow = WindowSettings::new(
@@ -123,8 +137,8 @@ fn main() {
     );
 
     /* used by every algorithms */
-    let mut i: usize = 1;
-    let mut j: usize = 0;
+    let mut first_index: usize = 1;
+    let mut second_index: usize = 0;
 
     while let Some(event) = window.next() {
 
@@ -133,15 +147,25 @@ fn main() {
             /* TODO #10 should be refactored: the program must be able
                to handle different algorithms */
 
-            if i == ARRAY_LENGTH {
+            if first_index == ARRAY_LENGTH {
                 continue;
             }
 
-            insertion_sort::iterate_over_insertion_sort(
-                &mut array,
-                &mut i,
-                &mut j,
-            );
+            match algorithm {
+                Algorithm::Insertion => {
+                    insertion_sort::iterate_over_insertion_sort(
+                        &mut array,
+                        &mut first_index,
+                        &mut second_index,
+                    );
+                }
+                _ => {
+                    selection_sort::iterate_over_selection_sort(
+                        &mut array,
+                        &mut second_index,
+                    );
+                }
+            };
 
             generate_positions(
                 &array,
