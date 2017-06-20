@@ -30,10 +30,11 @@ struct SquarePositions {
 }
 
 const SQUARE_DIMENSIONS: f64 = 10.0;
+const ARRAY_LENGTH: usize = 50;
 
 fn display_squares(
-    squares: &[Rectangle; 50],
-    positions: &[SquarePositions; 50],
+    squares: &[Rectangle; ARRAY_LENGTH],
+    positions: &[SquarePositions; ARRAY_LENGTH],
     context: &Context,
     window: &mut G2d,
 ) {
@@ -54,11 +55,11 @@ fn display_squares(
 }
 
 fn generate_positions(
-    array: &[u8; 50],
-    positions: &mut [SquarePositions; 50],
+    array: &[u8; ARRAY_LENGTH],
+    positions: &mut [SquarePositions; ARRAY_LENGTH],
 ) {
 
-    for index in 0..50 {
+    for index in 0..ARRAY_LENGTH {
 
         positions[index].horizontal_position =
             (index as f64) * SQUARE_DIMENSIONS;
@@ -83,15 +84,15 @@ fn main() {
             color: [0.0, 0.0, 0.0, 1.0],
             shape: rectangle::Shape::Square,
             border: None,
-        }; 50];
+        }; ARRAY_LENGTH];
 
     let mut positions = [
         SquarePositions {
             horizontal_position: 0.0,
             vertical_position: 0.0,
-        }; 50];
+        }; ARRAY_LENGTH];
 
-    let mut array: [u8; 50] = [0; 50];
+    let mut array: [u8; ARRAY_LENGTH] = [0; ARRAY_LENGTH];
 
     for value in array.iter_mut() {
         *value = rand::thread_rng().gen_range(1, 41);
@@ -112,7 +113,7 @@ fn main() {
             /* TODO #10 should be refactored: the program must be able
                to handle different algorithms */
 
-            if i == 50 {
+            if i == ARRAY_LENGTH {
                 continue;
             }
 
