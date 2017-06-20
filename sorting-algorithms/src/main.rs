@@ -24,6 +24,7 @@ use graphics::{
 };
 
 mod insertion_sort;
+mod selection_sort;
 
 #[derive(Copy, Clone)]
 struct SquarePositions {
@@ -123,8 +124,8 @@ fn main() {
     );
 
     /* used by every algorithms */
-    let mut i: usize = 1;
-    let mut j: usize = 0;
+    let mut first_index: usize = 1;
+    let mut second_index: usize = 0;
 
     while let Some(event) = window.next() {
 
@@ -133,14 +134,13 @@ fn main() {
             /* TODO #10 should be refactored: the program must be able
                to handle different algorithms */
 
-            if i == ARRAY_LENGTH {
+            if first_index == ARRAY_LENGTH {
                 continue;
             }
 
-            insertion_sort::iterate_over_insertion_sort(
+            selection_sort::iterate_over_selection_sort(
                 &mut array,
-                &mut i,
-                &mut j,
+                &mut second_index,
             );
 
             generate_positions(
