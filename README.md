@@ -29,6 +29,7 @@ cargo rustdoc -- --no-defaults
 This project contains the implementations of:
  * the insertion sort
  * the selection sort
+ * the merge sort (separated project here [merge-sort](https://github.com/jean553/merge-sort))
 
 ### Insertion sort
 
@@ -42,3 +43,10 @@ One of the simpliest sort algorithms. The selection sort iterates on every item 
 For each item, it browses the whole array in order to find a smaller item than the current one.
 When the whole array has been browsed, the current item is inverted with the found minimum value
 (if one value has been found).
+
+### Merge sort
+
+A merge sort consists of a division of an array into smaller arrays.
+This division is applied recursively until each sub-array contains exactly 1 or 2 items.
+The items are ordered. Each sub-array is then merged with each other.
+The merge sort is a `divide and conquer` algorithm.
