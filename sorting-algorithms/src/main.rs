@@ -147,6 +147,9 @@ fn main() {
     let mut first_index: usize = 1;
     let mut second_index: usize = 0;
 
+    /* used for the bubble sort */
+    let mut swapped = false;
+
     while let Some(event) = window.next() {
 
         if let Some(Button::Keyboard(Key::Space)) = event.release_args() {
@@ -154,7 +157,10 @@ fn main() {
             /* TODO #10 should be refactored: the program must be able
                to handle different algorithms */
 
-            if first_index == ARRAY_LENGTH {
+            if (
+                first_index == ARRAY_LENGTH ||
+                (first_index == ARRAY_LENGTH - 1 && swapped == false)
+            ) {
                 continue;
             }
 
@@ -167,7 +173,16 @@ fn main() {
                     );
                 }
                 Algorithm::Bubble => {
-                    bubble_sort::iterate_over_bubble_sort();
+                    bubble_sort::iterate_over_bubble_sort(
+                        &mut array,
+                        &mut first_index,
+                        &mut swapped,
+                    );
+
+                    if first_index == ARRAY_LENGTH && swapped == true {
+                        first_index = 1;
+                        swapped = false;
+                    }
                 }
                 _ => {
                     selection_sort::iterate_over_selection_sort(
