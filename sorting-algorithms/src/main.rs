@@ -26,6 +26,7 @@ use graphics::{
 
 mod insertion_sort;
 mod selection_sort;
+mod bubble_sort;
 
 #[derive(Copy, Clone)]
 struct SquarePositions {
@@ -36,6 +37,7 @@ struct SquarePositions {
 enum Algorithm {
     Insertion,
     Selection,
+    Bubble,
 }
 
 const SQUARE_DIMENSIONS: f64 = 10.0;
@@ -88,11 +90,16 @@ fn generate_positions(
 fn main() {
 
     let args: Vec<_> = env::args().collect();
-    let algorithm = if args.get(1).unwrap() == "insertion" {
-        Algorithm::Insertion
-    } else {
-        Algorithm::Selection
-    };
+    let input = args.get(1).unwrap();
+
+    let mut algorithm: Algorithm = Algorithm::Selection;
+
+    if input == "insertion" {
+        algorithm = Algorithm::Insertion;
+    }
+    else if input == "bubble" {
+        algorithm = Algorithm::Bubble;
+    }
 
     const WINDOW_WIDTH: u32 = 500;
     const WINDOW_HEIGHT: u32 = 500;
@@ -140,6 +147,9 @@ fn main() {
     let mut first_index: usize = 1;
     let mut second_index: usize = 0;
 
+    /* used for the bubble sort */
+    let mut swapped = false;
+
     while let Some(event) = window.next() {
 
         if let Some(Button::Keyboard(Key::Space)) = event.release_args() {
@@ -147,7 +157,10 @@ fn main() {
             /* TODO #10 should be refactored: the program must be able
                to handle different algorithms */
 
-            if first_index == ARRAY_LENGTH {
+            if (
+                first_index == ARRAY_LENGTH ||
+                (first_index == ARRAY_LENGTH - 1 && swapped == false)
+            ) {
                 continue;
             }
 
@@ -158,6 +171,18 @@ fn main() {
                         &mut first_index,
                         &mut second_index,
                     );
+                }
+                Algorithm::Bubble => {
+                    bubble_sort::iterate_over_bubble_sort(
+                        &mut array,
+                        &mut first_index,
+                        &mut swapped,
+                    );
+
+                    if first_index == ARRAY_LENGTH && swapped == true {
+                        first_index = 1;
+                        swapped = false;
+                    }
                 }
                 _ => {
                     selection_sort::iterate_over_selection_sort(
