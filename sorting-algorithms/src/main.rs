@@ -26,6 +26,7 @@ use graphics::{
 
 mod insertion_sort;
 mod selection_sort;
+mod bubble_sort;
 
 #[derive(Copy, Clone)]
 struct SquarePositions {
@@ -36,6 +37,7 @@ struct SquarePositions {
 enum Algorithm {
     Insertion,
     Selection,
+    Bubble,
 }
 
 const SQUARE_DIMENSIONS: f64 = 10.0;
@@ -88,11 +90,16 @@ fn generate_positions(
 fn main() {
 
     let args: Vec<_> = env::args().collect();
-    let algorithm = if args.get(1).unwrap() == "insertion" {
-        Algorithm::Insertion
-    } else {
-        Algorithm::Selection
-    };
+    let input = args.get(1).unwrap();
+
+    let mut algorithm: Algorithm = Algorithm::Selection;
+
+    if input == "insertion" {
+        algorithm = Algorithm::Insertion;
+    }
+    else if input == "bubble" {
+        algorithm = Algorithm::Bubble;
+    }
 
     const WINDOW_WIDTH: u32 = 500;
     const WINDOW_HEIGHT: u32 = 500;
@@ -158,6 +165,9 @@ fn main() {
                         &mut first_index,
                         &mut second_index,
                     );
+                }
+                Algorithm::Bubble => {
+                    bubble_sort::iterate_over_bubble_sort();
                 }
                 _ => {
                     selection_sort::iterate_over_selection_sort(
