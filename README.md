@@ -31,6 +31,7 @@ This project contains the implementations of:
  * the insertion sort
  * the selection sort
  * the merge sort (separated project here [merge-sort](https://github.com/jean553/merge-sort))
+ * the quick sort (separated project here [quick-sort](https://github.com/jean553/quick-sort))
  * the bubble sort
 
 ### Insertion sort
