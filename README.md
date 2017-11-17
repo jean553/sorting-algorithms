@@ -50,8 +50,8 @@ For example:
 Take `7`. This is the first item of the array, so it does nothing.
 
 Take `4`. Check in the list before `4` if this item position has to be changed.
-`4` < `7`, so all the items on the left side of `4` are moved to the right,
-and the correct position is assigned to `4`.
+`4` < `7`, so `7` is moved to the right,
+there is no item anymore on the left side, so the correct position is assigned to `4`.
 
 The array is now:
 
@@ -60,8 +60,9 @@ The array is now:
 ```
 
 Take `3`. Check in the list before `3` if this item position has to be changed.
-`3` < `4`, so all the items on the left side of `3` are moved to the right,
-and the correct position is assigned to `3`.
+`3` < `7`, so `7` is moved to the right,
+`3` < `4`, so `4` is moved to the right,
+there is no item anymore on the left side, so the correct position is assigned to `3`.
 
 The array is now:
 
@@ -70,8 +71,8 @@ The array is now:
 ```
 
 Take `5`. Check in the list before `5` is this item position has to be changed.
-`4` < `5` < `7`, so all the items between `4` and `5` are moved to the right,
-and the correct position is assigned to `5`.
+`5` < `7`, so `7` is moved to the right,
+`5` > `4`, so the correct position is assigned to `5`.
 
 The final array is:
 
