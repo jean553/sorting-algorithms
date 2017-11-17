@@ -36,9 +36,48 @@ This project contains the implementations of:
 
 ### Insertion sort
 
-![Image 2](sorting-algorithms/res/insertion_sort.png)
+### Example
 
-More details: https://en.wikipedia.org/wiki/Insertion_sort
+Simple sorting algorithm that sort each item one by one,
+taking each item of the array in their initial order.
+
+For example:
+
+```
+7 4 3 5
+```
+
+Take `7`. This is the first item of the array, so it does nothing.
+
+Take `4`. Check in the list before `4` if this item position has to be changed.
+`4` < `7`, so all the items on the left side of `4` are moved to the right,
+and the correct position is assigned to `4`.
+
+The array is now:
+
+```
+4 7 3 5
+```
+
+Take `3`. Check in the list before `3` if this item position has to be changed.
+`3` < `4`, so all the items on the left side of `3` are moved to the right,
+and the correct position is assigned to `3`.
+
+The array is now:
+
+```
+3 4 7 5
+```
+
+Take `5`. Check in the list before `5` is this item position has to be changed.
+`4` < `5` < `7`, so all the items between `4` and `5` are moved to the right,
+and the correct position is assigned to `5`.
+
+The final array is:
+
+```
+3 4 5 7
+```
 
 ### Selection sort
 
