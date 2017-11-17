@@ -36,7 +36,7 @@ This project contains the implementations of:
 
 ### Insertion sort
 
-### Example
+#### Example
 
 Simple sorting algorithm that sort each item one by one,
 taking each item of the array in their initial order.
@@ -79,6 +79,21 @@ The final array is:
 ```
 3 4 5 7
 ```
+
+#### Complexity, worst case, best case
+
+Best case (array already sorted): `O(n)`, each item is iterated once one by one.
+
+Worst case (array sorted but inverted): `O(n^2)`, each item is iterated once one by one,
+but all the items on the left side of the current iterated one have to be moved to the right,
+at every iteration.
+
+Average: Quadratic.
+
+#### Pros and cons
+
+Pros: very small array (might be faster than `quicksort`).
+Cons: inappropriate for very big arrays.
 
 ### Selection sort
 
