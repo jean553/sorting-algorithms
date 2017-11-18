@@ -97,10 +97,66 @@ Cons: inappropriate for very big arrays.
 
 ### Selection sort
 
-One of the simpliest sort algorithms. The selection sort iterates on every item one by one.
-For each item, it browses the whole array in order to find a smaller item than the current one.
-When the whole array has been browsed, the current item is inverted with the found minimum value
-(if one value has been found).
+#### Example
+
+The selection sort browses the array multiple time in order to find the unsorted minimum value.
+Each time this minimum value is find, it is inverted with the current searched index.
+
+For example:
+
+```
+7 4 3 5
+```
+
+The current index is `0`. The value of the index is `7`. The current minimum value is `7`.
+
+We move the index to the right. The current index is `1`, the value is `4`.
+`4` < `7`, so the current minimum value is `4`.
+
+We move the index to the right. The current index is `2`, the value is `3`.
+`3` < `4`, so the current minimum value is `3`.
+
+We move the index to the right. The current index is `3`, the value is `5`.
+`5` > `3`, so the minimum value is still `3`.
+
+The array has been browsed. The found minimum value is `3` for the current index `0`,
+the values `3` and `7` are inverted.
+
+The array is now:
+
+```
+3 4 7 5
+```
+
+The current index is `1`. The value of the index is `4`. The current minimum value is `4`.
+
+We move the index to the right. The current index is `2`, the value is `7`.
+`7` > `4`, so the minimum value is still `4`.
+
+We move the index to the right. The current index is `3`, the value is `5`.
+`5` > `4`, so the minimum value is still `4`.
+
+The array has been browsed. The found minimum value is `4` for the current index `1`.
+
+The array is now:
+
+```
+3 4 7 5
+```
+
+The current index is `2`. The value of the index is `7`. The current minimum value is `7`.
+
+We move the index to the right. The current index is `3`, the value is `5`.
+`5` < `7`, so the current minimum value is `5`.
+
+The array has been browsed. The found minimum value is `5` for the current index `2`,
+the values `5` and `7` are inverted.
+
+The array is now:
+
+```
+3 4 5 7
+```
 
 ### Merge sort
 
