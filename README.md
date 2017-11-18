@@ -158,6 +158,27 @@ The array is now:
 3 4 5 7
 ```
 
+#### Complexity, worst case, best case
+
+The complexity does not depend of the array values (unlike `insertion sort` or `quick sort`).
+The complexity is always the same and only depends of the size.
+
+For `n` items, the complexity (amount of iterations in items) is `(n - 1) + (n - 2) + ... + 2 + 1`.
+The first item is selected first, then the whole array is browsed, item by item.
+Then, the second item is selected and the whole array is browsed, item by item.
+After each array browsing process, two items may swap positions.
+
+Best case: the array is already sorted, there is no swap at all.
+Worst case: the array is inverted, there is one swap per browsing.
+
+Selection sort always browse all the items. Insertion sort only browses the required items
+in order to set the position of an element.
+
+#### Pros and cons
+
+`Selection sort` comparison complexity is always `n(n - 1) / 2`.
+`Insertion sort` comparison complexity is always `n(n - 1) / 2` in its worst case or lesser.
+
 ### Merge sort
 
 A merge sort consists of a division of an array into smaller arrays.
