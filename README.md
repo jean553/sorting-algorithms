@@ -209,6 +209,15 @@ Each sub-array is then recursively merged with each other:
 3 4 5 7
 ```
 
+#### Complexity
+
+Average comparisons amount: `O(n log(n))`
+(https://en.wikipedia.org/wiki/Merge_sort)
+
+#### Pros and cons
+
+Merge sort can be easily multi-threaded.
+
 ### Bubble sort
 
 The bubble sort is one of the worstest sorting algorithms.
