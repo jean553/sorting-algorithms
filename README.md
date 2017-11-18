@@ -97,10 +97,87 @@ Cons: inappropriate for very big arrays.
 
 ### Selection sort
 
-One of the simpliest sort algorithms. The selection sort iterates on every item one by one.
-For each item, it browses the whole array in order to find a smaller item than the current one.
-When the whole array has been browsed, the current item is inverted with the found minimum value
-(if one value has been found).
+#### Example
+
+The selection sort browses the array multiple time in order to find the unsorted minimum value.
+Each time this minimum value is find, it is inverted with the current searched index.
+
+For example:
+
+```
+7 4 3 5
+```
+
+The current index is `0`. The value of the index is `7`. The current minimum value is `7`.
+
+We move the index to the right. The current index is `1`, the value is `4`.
+`4` < `7`, so the current minimum value is `4`.
+
+We move the index to the right. The current index is `2`, the value is `3`.
+`3` < `4`, so the current minimum value is `3`.
+
+We move the index to the right. The current index is `3`, the value is `5`.
+`5` > `3`, so the minimum value is still `3`.
+
+The array has been browsed. The found minimum value is `3` for the current index `0`,
+the values `3` and `7` are inverted.
+
+The array is now:
+
+```
+3 4 7 5
+```
+
+The current index is `1`. The value of the index is `4`. The current minimum value is `4`.
+
+We move the index to the right. The current index is `2`, the value is `7`.
+`7` > `4`, so the minimum value is still `4`.
+
+We move the index to the right. The current index is `3`, the value is `5`.
+`5` > `4`, so the minimum value is still `4`.
+
+The array has been browsed. The found minimum value is `4` for the current index `1`.
+
+The array is now:
+
+```
+3 4 7 5
+```
+
+The current index is `2`. The value of the index is `7`. The current minimum value is `7`.
+
+We move the index to the right. The current index is `3`, the value is `5`.
+`5` < `7`, so the current minimum value is `5`.
+
+The array has been browsed. The found minimum value is `5` for the current index `2`,
+the values `5` and `7` are inverted.
+
+The array is now:
+
+```
+3 4 5 7
+```
+
+#### Complexity, worst case, best case
+
+The complexity does not depend of the array values (unlike `insertion sort` or `quick sort`).
+The complexity is always the same and only depends of the size.
+
+For `n` items, the complexity (amount of iterations in items) is `(n - 1) + (n - 2) + ... + 2 + 1`.
+The first item is selected first, then the whole array is browsed, item by item.
+Then, the second item is selected and the whole array is browsed, item by item.
+After each array browsing process, two items may swap positions.
+
+Best case: the array is already sorted, there is no swap at all.
+Worst case: the array is inverted, there is one swap per browsing.
+
+Selection sort always browse all the items. Insertion sort only browses the required items
+in order to set the position of an element.
+
+#### Pros and cons
+
+`Selection sort` comparison complexity is always `n(n - 1) / 2`.
+`Insertion sort` comparison complexity is always `n(n - 1) / 2` in its worst case or lesser.
 
 ### Merge sort
 
