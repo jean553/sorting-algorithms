@@ -181,10 +181,42 @@ in order to set the position of an element.
 
 ### Merge sort
 
-A merge sort consists of a division of an array into smaller arrays.
-This division is applied recursively until each sub-array contains exactly 1 or 2 items.
-The items are ordered. Each sub-array is then merged with each other.
-The merge sort is a `divide and conquer` algorithm.
+#### Example
+
+For example:
+
+```
+7 4 3 5
+```
+
+The array is divided into two sub-arrays until there are only one-item long arrays.
+
+```
+7 4 - 3 5
+```
+
+```
+7 - 4 -- 3 - 5
+```
+
+Each sub-array is then recursively merged with each other:
+
+```
+4 7 - 3 5
+```
+
+```
+3 4 5 7
+```
+
+#### Complexity
+
+Average comparisons amount: `O(n log(n))`
+(https://en.wikipedia.org/wiki/Merge_sort)
+
+#### Pros and cons
+
+Merge sort can be easily multi-threaded.
 
 ### Bubble sort
 
