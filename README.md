@@ -6,6 +6,25 @@
 
 Sorting algorithms implementations.
 
+## Table of contents
+- [Installation and usage](#installation-and-usage)
+- [Generate documentation](#generate-documentation)
+- [Sorting algorithms](#sorting-algorithms)
+    * [Quicksort](#quicksort)
+    * [Insertion sort](#insertion-sort)
+        - Example
+        - Complexity, worst case, best case
+        - Pros and cons
+    * [Selection sort](#selection-sort)
+        - Example
+        - Complexity, worst case, best case
+        - Pros and cons
+    * [Merge sort](#merge-sort)
+        - Example
+        - Complexity
+        - Pros and cons
+    * [Bubble sort](#bubble-sort)
+
 ## Installation and usage
 
 ```
@@ -33,6 +52,11 @@ This project contains the implementations of:
  * the merge sort (separated project here [merge-sort](https://github.com/jean553/merge-sort))
  * the quick sort (separated project here [quick-sort](https://github.com/jean553/quick-sort))
  * the bubble sort
+
+### Quicksort
+
+Quicksort documentation and implementation can be found into a separated project:
+[quick-sort](https://github.com/jean553/quick-sort)
 
 ### Insertion sort
 
